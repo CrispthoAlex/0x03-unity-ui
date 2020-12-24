@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; //Load Scenes 
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,7 +43,16 @@ public class PlayerController : MonoBehaviour
         // Apply force to rotate the assets
         rb.transform.Rotate(rotateObj * speed * Time.deltaTime) ;
     }
-    
+    // Reload the scene when Health player is over
+    void Update()
+    {
+        if (health == 0)
+        {
+            Debug.Log("Game Over!");
+            // Loads the Scene by its name or index in Build Settings
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+        }
+    }
     // Function to control Player game properties
     void OnTriggerEnter(Collider other)
     {
