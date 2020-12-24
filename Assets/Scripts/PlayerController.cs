@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     // Used for Coin object
     private int score = 0;
+    // Used for Player health
+    public int health = 5;
 
     // Vector3 - Representation of 3D vectors and points.
     // Catch the x, y, z axis for translation and rotation movements.
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
         rb.transform.Rotate(rotateObj * speed * Time.deltaTime) ;
     }
     
+    // Function to control Player game properties
     void OnTriggerEnter(Collider other)
     {
         // Used to match the Object wit the tag Pickup
@@ -52,6 +55,15 @@ public class PlayerController : MonoBehaviour
             Debug.Log($"Score: {score}");
             // Destroy after touch the coin.
             Destroy(other.gameObject);
+        }
+        // Player health is affected
+        if (other.CompareTag("Trap"))
+        {
+            // decrement the value of health when the Player touches
+            // an object tagged Trap
+            health--;
+            // Print in Console the health
+            Debug.Log($"Health: {health}");
         }
     }
 }
