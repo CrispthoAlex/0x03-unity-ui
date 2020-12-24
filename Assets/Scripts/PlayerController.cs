@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     // Define the speed at which the object moves.
     // Modified by the user.
     public float speed;
+    // Used for Coin object
+    private int score = 0;
 
     // Vector3 - Representation of 3D vectors and points.
     // Catch the x, y, z axis for translation and rotation movements.
@@ -38,5 +40,18 @@ public class PlayerController : MonoBehaviour
         // Apply force to rotate the assets
         rb.transform.Rotate(rotateObj * speed * Time.deltaTime) ;
     }
-    // Update is called once per frame. void Update() method to use later
+    
+    void OnTriggerEnter(Collider other)
+    {
+        // Used to match the Object wit the tag Pickup
+        if (other.CompareTag("Pickup"))
+        {
+            // Increase score when touch the coin
+            score++;
+            // Print in Console the score
+            Debug.Log($"Score: {score}");
+            // Destroy after touch the coin.
+            Destroy(other.gameObject);
+        }
+    }
 }
