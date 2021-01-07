@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; //Load Scenes 
+using UnityEngine.SceneManagement; //Load Scenes
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerController : MonoBehaviour
     private int score = 0;
     // Used for Player health
     public int health = 5;
+
+    // Value of the Scoretext
+    public Text scoreText;
 
     // Vector3 - Representation of 3D vectors and points.
     // Catch the x, y, z axis for translation and rotation movements.
@@ -25,7 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Use GetComponent to access the component.
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody> ();
     }
 
     // Update is called once per frame
@@ -62,7 +66,9 @@ public class PlayerController : MonoBehaviour
             // Increase score when touch the coin
             score++;
             // Print in Console the score
-            Debug.Log($"Score: {score}");
+            // Debug.Log($"Score: {score}");
+            // Update Score text
+            SetScoreText();
             // Destroy after touch the coin.
             Destroy(other.gameObject);
         }
@@ -80,5 +86,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("You win!");
         }
+    }
+
+    void SetScoreText()
+    {
+        scoreText.text = $"Score: {score}";
     }
 }
