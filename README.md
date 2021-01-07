@@ -1,6 +1,6 @@
 <a href= "url"><img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-cs-unity/422/12b.gif" width="900px"></a>
 <br>
-<a href= "url"><img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-cs-unity/422/12a.gif" width="900px"></a>
+<a href= "url"><img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-cs-unity/422/7b.gif" width="900px"></a>
 
 # 0x03. Unity - UI
 
