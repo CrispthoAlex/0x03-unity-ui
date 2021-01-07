@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     //  load the maze scene when the Play button is pressed
-    public void PlayMaze()
-    {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
-    }
+    public void PlayMaze() => SceneManager.LoadScene(1, LoadSceneMode.Single);
+    // Exit game when Quit button is pressed
+    public void QuitMaze() => Debug.Log("Quit Game");
 }
