@@ -55,8 +55,15 @@ public class PlayerController : MonoBehaviour
         // Apply force to rotate the assets
         rb.transform.Rotate(rotateObj * speed * Time.deltaTime) ;
     }
-    // Reload the scene when Health player is over
-    // void Update() { }
+    
+    void Update()
+    {
+        // Return to menu when Escape key is pressed
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+        }
+    }
     
     // Function to control Player game properties
     void OnTriggerEnter(Collider other)
@@ -121,6 +128,6 @@ public class PlayerController : MonoBehaviour
         // Change scene 2 seconds later
         yield return new WaitForSeconds(seconds);
         // Loads the Scene by its name or index in Build Settings
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }
