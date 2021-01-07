@@ -6,25 +6,33 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    // Define the speed at which the object moves.
-    // Modified by the user.
+    // VARIABLES
+
+    // ****** Public variables ******
+    // Define the speed the object moves
     public float speed;
-    // Used for Coin object
-    private int score = 0;
     // Used for Player health
     public int health = 5;
-
     // Value of the Scoretext
     public Text scoreText;
+    // Value of the Health
+    public Text healthText;
+    // Value of the WinLose
+    public Text winLoseText;
+    // Call to WinLoseBG GameObject
+    public Image WinLoseBG;
 
+    // ****** Private variables ******
+    // Used for Coin object
+    private int score = 0;
     // Vector3 - Representation of 3D vectors and points.
     // Catch the x, y, z axis for translation and rotation movements.
     Vector3 translateObj;
     Vector3 rotateObj;
-    
     // Reference to Rigidbody component
     Rigidbody rb;
 
+    // METHODS AND FUNCTIONS
     // Start is called before the first frame update
     void Start()
     {
@@ -48,15 +56,8 @@ public class PlayerController : MonoBehaviour
         rb.transform.Rotate(rotateObj * speed * Time.deltaTime) ;
     }
     // Reload the scene when Health player is over
-    void Update()
-    {
-        if (health == 0)
-        {
-            Debug.Log("Game Over!");
-            // Loads the Scene by its name or index in Build Settings
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
-        }
-    }
+    // void Update() { }
+    
     // Function to control Player game properties
     void OnTriggerEnter(Collider other)
     {
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
             // Destroy after touch the coin.
             Destroy(other.gameObject);
         }
+
         // Player health is affected
         if (other.CompareTag("Trap"))
         {
@@ -79,17 +81,46 @@ public class PlayerController : MonoBehaviour
             // an object tagged Trap
             health--;
             // Print in Console the health
-            Debug.Log($"Health: {health}");
+            // Debug.Log($"Health: {health}");
+            SetHealthText();
+            
+            if (health == 0)
+            {
+                // Debug.Log("Game Over!");
+                winLoseText.text = "Game Over!";
+                winLoseText.color = Color.white;
+                WinLoseBG.color = Color.red;
+                WinLoseBG.gameObject.SetActive(true);
+                StartCoroutine(LoadScene(3f));
+            }
         }
         // Player wins!!!
         if (other.CompareTag("Goal"))
         {
-            Debug.Log("You win!");
+            // Debug.Log("You win!");
+            winLoseText.text = "You win!";
+            winLoseText.color = Color.black;
+            WinLoseBG.color = Color.green;
+            WinLoseBG.gameObject.SetActive(true);
+            StartCoroutine(LoadScene(3f));
         }
     }
-
+    // Method to updated the score
     void SetScoreText()
     {
         scoreText.text = $"Score: {score}";
+    }
+    // Method to updated the health
+    void SetHealthText()
+    {
+        healthText.text = $"Health: {health}";
+    }
+    // Method to load scene with delay
+    IEnumerator LoadScene(float seconds)
+    {
+        // Change scene 2 seconds later
+        yield return new WaitForSeconds(seconds);
+        // Loads the Scene by its name or index in Build Settings
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
