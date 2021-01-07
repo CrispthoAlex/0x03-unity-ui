@@ -926,7 +926,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 40
@@ -8600,7 +8600,6 @@ MonoBehaviour:
   healthText: {fileID: 291347636}
   winLoseText: {fileID: 198190150}
   WinLoseBG: {fileID: 239629754}
-  delayScene: 2
 --- !u!1001 &2094788732
 PrefabInstance:
   m_ObjectHideFlags: 0
